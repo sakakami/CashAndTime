@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeV">
+
+    <fragment
+        android:id="@+id/childMainV"
+        android:name="mysoftstudio.cashandtime.view.ChildMainV"
+        android:label="fragment_child_main_v"
+        tools:layout="@layout/fragment_child_main_v" >
+        <action
+            android:id="@+id/action_childMainV_to_cashInfoListV"
+            app:destination="@id/cashInfoListV" />
+        <action
+            android:id="@+id/action_childMainV_to_timeInfoListV"
+            app:destination="@id/timeInfoListV" />
+    </fragment>
+    <fragment
+        android:id="@+id/cashInfoListV"
+        android:name="mysoftstudio.cashandtime.view.CashInfoListV"
+        android:label="fragment_cash_info_list_v"
+        tools:layout="@layout/fragment_cash_info_list_v" />
+    <fragment
+        android:id="@+id/timeInfoListV"
+        android:name="mysoftstudio.cashandtime.view.TimeInfoListV"
+        android:label="fragment_time_info_list_v"
+        tools:layout="@layout/fragment_time_info_list_v" />
+    <fragment
+        android:id="@+id/homeV"
+        android:name="mysoftstudio.cashandtime.view.HomeV"
+        android:label="fragment_home_v"
+        tools:layout="@layout/fragment_home_v" >
+        <action
+            android:id="@+id/action_homeV_to_childMainV"
+            app:destination="@id/childMainV" />
+        <action
+            android:id="@+id/action_homeV_to_creatorMainV"
+            app:destination="@id/creatorMainV" />
+    </fragment>
+    <fragment
+        android:id="@+id/creatorMainV"
+        android:name="mysoftstudio.cashandtime.view.CreatorMainV"
+        android:label="fragment_creator_main_v"
+        tools:layout="@layout/fragment_creator_main_v" >
+        <action
+            android:id="@+id/action_creatorMainV_to_timeInfoListV"
+            app:destination="@id/timeInfoListV" />
+        <action
+            android:id="@+id/action_creatorMainV_to_cashInfoListV"
+            app:destination="@id/cashInfoListV" />
+    </fragment>
+</navigation>

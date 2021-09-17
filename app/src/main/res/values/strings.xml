@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">子母錢包</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="global_ok">確定</string>
+    <!-- home page -->
+    <string name="home_mode_create">建立帳號</string>
+    <string name="home_mode_inherit">登入帳號</string>
+    <string name="home_type_parent">母帳號</string>
+    <string name="home_type_child">子帳號</string>
+    <string name="home_mode_title">建立/登入：</string>
+    <string name="home_name_title">暱稱：</string>
+    <string name="home_inherit_title">會員編號：</string>
+    <string name="home_type_title">帳號類型：</string>
+    <string name="home_create_fail">建立帳號失敗，請重新嘗試。</string>
+    <string name="home_inherit_fail">會員編號錯誤，請確認後重新嘗試。</string>
+    <!-- creator page -->
+    <string name="creator_wallet_title">錢包一覽</string>
+    <string name="creator_mission_title">任務一覽</string>
+    <string name="creator_mission_create">新增任務</string>
+    <string name="creator_wallet_add">新增子錢包</string>
+    <string name="creator_wallet_add_hint">請輸入子錢包的會員編號</string>
+    <string name="creator_msg_no_wallet">尚未添加任何子錢包，是否前往添加。</string>
+    <string name="creator_msg_success">子錢包添加成功。</string>
+    <string name="creator_msg_fail">子錢包添加失敗。</string>
+    <string name="creator_msg_full">可添加的名額已滿。</string>
+    <!-- item wallet -->
+    <string name="wallet_show_cash">查看\n零用金</string>
+    <string name="wallet_show_time">查看\n時間</string>
+    <string name="wallet_add_cash">增減\n零用金</string>
+    <string name="wallet_add_time">增減\n時間</string>
+    <!-- dialog -->
+    <string name="dialog_cash_title">增減金額</string>
+    <string name="dialog_info">增減理由</string>
+    <string name="dialog_time_title">增減時間</string>
+    <string name="dialog_cash_caution">請輸入增減金額或增減金額不可為零</string>
+    <string name="dialog_time_caution">請輸入增減時間或增減時間不可為零</string>
+    <string name="dialog_info_caution">請輸入理由，理由不可空白</string>
+    <string name="dialog_hint">0</string>
+    <string name="dialog_type_add">增加</string>
+    <string name="dialog_type_reduce">減少</string>
+    <string name="dialog_type">類型</string>
+    <string name="dialog_send">送出</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="msg_cash_success">成功新增零用錢紀錄</string>
+    <string name="msg_cash_fail">新增零用錢紀錄失敗</string>
+    <string name="msg_time_success">成功新增時間紀錄</string>
+    <string name="msg_time_fail">新增時間紀錄失敗</string>
+    <string name="child_title_name">暱稱：</string>
+    <string name="child_title_id">會員編號：</string>
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CreatorMainV">
+
+    <View
+        android:id="@+id/viewA"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_surround"
+        app:layout_constraintBottom_toTopOf="@+id/textAddWallet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textWallet" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerWallet"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewA"
+        app:layout_constraintEnd_toEndOf="@+id/viewA"
+        app:layout_constraintStart_toStartOf="@+id/viewA"
+        app:layout_constraintTop_toTopOf="@+id/viewA" />
+
+    <TextView
+        android:id="@+id/textWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="@string/creator_wallet_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textAddWallet"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_surround_btn"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/creator_wallet_add"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/viewB"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_surround"
+        app:layout_constraintBottom_toTopOf="@+id/textMissionAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textMission"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMission"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewB"
+        app:layout_constraintEnd_toEndOf="@+id/viewB"
+        app:layout_constraintStart_toStartOf="@+id/viewB"
+        app:layout_constraintTop_toTopOf="@+id/viewB"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/textMission"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/creator_mission_title"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/textMissionAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_surround_btn"
+        android:gravity="center"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:text="@string/creator_mission_create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/imageMember"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/member" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

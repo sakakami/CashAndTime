@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.HomeV">
+
+    <TextView
+        android:id="@+id/textMode"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="256dp"
+        android:gravity="center"
+        android:text="@string/home_mode_title"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/textMode"
+        app:layout_constraintTop_toTopOf="@+id/textMode">
+
+        <RadioButton
+            android:id="@+id/radioCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/home_mode_create"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioInherit"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/home_mode_inherit"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/home_name_title"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMode" />
+
+    <EditText
+        android:id="@+id/editType"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textMode" />
+
+    <TextView
+        android:id="@+id/textType"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/home_type_title"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/textType"
+        app:layout_constraintTop_toTopOf="@+id/textType">
+
+        <RadioButton
+            android:id="@+id/radioParent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/home_type_parent"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioChild"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/home_type_child"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textCheck"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:text="@string/dialog_send"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editType" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
