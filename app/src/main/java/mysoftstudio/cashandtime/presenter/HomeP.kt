@@ -75,7 +75,6 @@ class HomeP(private val vi: HomeVI) : HomePI {
             userChildE = memberG.data[0].userChildE
             userChildF = memberG.data[0].userChildF
             userChildG = memberG.data[0].userChildG
-            Log.e(ERROR_MSG, "id -> ${memberG.data[0].userId}, name -> ${memberG.data[0].userName}, type -> ${memberG.data[0].userType}")
             if (memberG.data[0].userType == "parent") vi.toCreatorPage()
             else vi.toChildPage()
         }

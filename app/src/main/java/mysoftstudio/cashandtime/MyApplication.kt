@@ -7,7 +7,7 @@ import kotlin.properties.Delegates
 class MyApplication: Application() {
     companion object {
         var instance: MyApplication by Delegates.notNull()
-        const val checkKey = "54957f83ba7c8991416"
+        const val checkKey = "54957f83ba7c899141633f96cb2bf948639430a777853c1f2288c8c73765d3fe"
     }
 
     override fun onCreate() {

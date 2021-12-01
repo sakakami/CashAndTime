@@ -46,10 +46,18 @@ class ChildMainP(private val vi: ChildMainVI) : ChildMainPI {
         mTimeG = timeG.data[0]
         val showCash = cashG.data[0].cashData[0].cashTotal + " NTD"
         var showTime = "00:00"
-        val min = timeG.data[0].timeData[0].timeTotal.toInt()
-        showTime = if (min < 60) { if (min > 9) "00:$min" else "00:0$min" } else {
-            val hour = min / 60
-            val finalMin = min % 60
+        val timeTotal = timeG.data[0].timeData[0].timeTotal.toInt()
+        showTime = if (timeTotal < 0) {
+            val builder = StringBuilder(timeTotal.toString())
+            builder.delete(0, 1)
+            val hour = builder.toString().toInt() / 60
+            val min = builder.toString().toInt() % 60
+            val textHour = if (hour > 9) hour.toString() else "0$hour"
+            val textMin = if (min > 9) min.toString() else "0$min"
+            "-$textHour:$textMin"
+        } else {
+            val hour = timeTotal / 60
+            val finalMin = timeTotal % 60
             val hourToString = if (hour > 9) "$hour" else "0$hour"
             val finalToString = if (finalMin > 9) "$finalMin" else "0$finalMin"
             "$hourToString:$finalToString"

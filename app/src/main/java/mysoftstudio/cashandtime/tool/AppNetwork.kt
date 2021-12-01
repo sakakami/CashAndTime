@@ -18,7 +18,7 @@ object AppNetwork {
     }
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://www.mywebsite.com/")
+            .baseUrl("http://mysoftstudio.link/")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

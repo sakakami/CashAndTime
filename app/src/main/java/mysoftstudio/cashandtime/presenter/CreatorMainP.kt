@@ -98,12 +98,23 @@ class CreatorMainP(private val vi: CreatorMainVI) : CreatorMainPI {
         holder.textChild.text = mCashList[position].cashData[0].childName
         holder.textCash.text = mCashList[position].cashData[0].cashTotal
         val timeTotal = mTimeList[position].timeData[0].timeTotal.toInt()
-        val hour = timeTotal / 60
-        val min = timeTotal % 60
-        val textHour = if (hour > 9) hour.toString() else "0$hour"
-        val textMin = if (min > 9) min.toString() else "0$min"
-        val textTime = "$textHour:$textMin"
-        holder.textTime.text = textTime
+        if (timeTotal < 0) {
+            val builder = StringBuilder(timeTotal.toString())
+            builder.delete(0, 1)
+            val hour = builder.toString().toInt() / 60
+            val min = builder.toString().toInt() % 60
+            val textHour = if (hour > 9) hour.toString() else "0$hour"
+            val textMin = if (min > 9) min.toString() else "0$min"
+            val textTime = "-$textHour:$textMin"
+            holder.textTime.text = textTime
+        } else {
+            val hour = timeTotal / 60
+            val min = timeTotal % 60
+            val textHour = if (hour > 9) hour.toString() else "0$hour"
+            val textMin = if (min > 9) min.toString() else "0$min"
+            val textTime = "$textHour:$textMin"
+            holder.textTime.text = textTime
+        }
     }
 
     fun handleShowCash(position: Int) {
