@@ -1,6 +1,7 @@
 package mysoftstudio.cashandtime.data
 
 class TimeData {
+    var timeId = ""
     var timeDate = ""
     var childId = ""
     var childName = ""

@@ -13,4 +13,6 @@ interface AppNetworkI {
     @FormUrlEncoded @POST("SaveTime.php") suspend fun sendTimeData(@FieldMap map: ArrayMap<String, String>): DefaultG
     @FormUrlEncoded @POST("SaveMember.php") suspend fun sendMemberData(@FieldMap map: ArrayMap<String, String>): CreateMemberG
     @FormUrlEncoded @POST("ChildConnect.php") suspend fun sendChildData(@FieldMap map: ArrayMap<String, String>): DefaultG
+    @FormUrlEncoded @POST("DelCashData.php") suspend fun sendDelCashData(@FieldMap map: ArrayMap<String, String>): DefaultG
+    @FormUrlEncoded @POST("DelTimeData.php") suspend fun sendDelTimeData(@FieldMap map: ArrayMap<String, String>): DefaultG
 }

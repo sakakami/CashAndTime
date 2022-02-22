@@ -9,13 +9,14 @@
 
     <TextView
         android:id="@+id/textMode"
+        style="@style/textViewStyle"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="160dp"
         android:gravity="center"
         android:text="@string/home_mode_title"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,22 +24,22 @@
         android:id="@+id/radioGroupMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/textMode"
         app:layout_constraintTop_toTopOf="@+id/textMode">
 
         <RadioButton
             android:id="@+id/radioCreate"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:text="@string/home_mode_create"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioInherit"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:text="@string/home_mode_inherit"
             android:textSize="20sp" />
     </RadioGroup>
@@ -46,33 +47,42 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/home_name_title"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        style="@style/textViewStyle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMode" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupMode" />
 
     <EditText
         android:id="@+id/editType"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:autofillHints="name"
+        android:inputType="textPersonName"
+        android:labelFor="@id/editType"
+        android:textSize="20sp"
+        style="@style/editViewStyle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textMode" />
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textType"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/home_type_title"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        style="@style/textViewStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -80,38 +90,39 @@
         android:id="@+id/radioGroupType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/textType"
         app:layout_constraintTop_toTopOf="@+id/textType">
 
         <RadioButton
             android:id="@+id/radioParent"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:text="@string/home_type_parent"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioChild"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:text="@string/home_type_child"
             android:textSize="20sp" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/textCheck"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/dialog_send"
         android:textSize="30sp"
+        style="@style/textViewStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editType" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupType" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,5 @@ interface CreatorMainVI {
     fun showAddTime(name: String, position: Int)
     fun showAddMessage()
     fun refreshAdapter(size: Int)
+    fun showAbout()
 }

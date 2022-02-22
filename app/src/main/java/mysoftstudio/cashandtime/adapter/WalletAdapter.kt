@@ -5,6 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import mysoftstudio.cashandtime.databinding.HolderWalletBinding
 
+/**
+ * 錢包列表Adapter
+ * 利用listener將item holder與position傳到fragment去做處理
+ * 這樣可以不用額外使用listener來監聽item的點擊等事件
+ * 數據也不需要傳進來做處理，直接在fragment就可以處理了
+ */
+
 class WalletAdapter(private val listener: (HolderWalletBinding, Int) -> Unit) : RecyclerView.Adapter<WalletAdapter.WalletHolder>() {
     private var size = 0
 

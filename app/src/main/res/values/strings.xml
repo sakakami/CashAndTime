@@ -46,6 +46,21 @@
     <string name="msg_cash_fail">新增零用錢紀錄失敗</string>
     <string name="msg_time_success">成功新增時間紀錄</string>
     <string name="msg_time_fail">新增時間紀錄失敗</string>
+    <string name="msg_cash_del_fail">刪除零用錢紀錄失敗</string>
+    <string name="msg_cash_del_success">成功刪除零用錢紀錄</string>
+    <string name="msg_time_del_fail">刪除時間紀錄失敗</string>
+    <string name="msg_time_del_success">成功刪除時間紀錄</string>
+    <string name="msg_del_confirm">是否刪除本記錄？</string>
     <string name="child_title_name">暱稱：</string>
     <string name="child_title_id">會員編號：</string>
+    <!-- menu -->
+    <string name="menu_item_switch">夜晚模式</string>
+    <string name="menu_item_about">關於</string>
+    <string name="menu_about_title">關於</string>
+    <string name="menu_about_title_version">版本：</string>
+    <string name="menu_about_title_developer">開發者：MySoft Studio</string>
+    <string name="menu_about_title_rate">評價App：</string>
+    <string name="menu_about_result_rate"><u>Rate my app</u></string>
+    <string name="menu_about_title_project">專案頁面：</string>
+    <string name="menu_about_result_project"><u>GitHub page</u></string>
 </resources>

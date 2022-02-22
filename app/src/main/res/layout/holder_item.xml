@@ -7,69 +7,110 @@
 
     <TextView
         android:id="@+id/textData"
+        style="@style/textViewStyle2"
         android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_height="61dp"
         android:gravity="center"
-        android:background="@drawable/bg_surround_gray"
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintEnd_toEndOf="@+id/viewBackground"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/viewBackground"
         app:layout_constraintTop_toTopOf="@+id/viewBackground" />
 
+    <View
+        android:id="@+id/viewBarA"
+        android:layout_width="1dp"
+        android:layout_height="61dp"
+        style="@style/viewStyle2"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
+        app:layout_constraintEnd_toEndOf="@+id/viewBackground"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textData"
+        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
+
     <TextView
         android:id="@+id/textTotal"
+        style="@style/textViewStyle2"
         android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_height="61dp"
         android:gravity="center"
-        android:background="@drawable/bg_surround_gray"
         app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
         app:layout_constraintEnd_toEndOf="@+id/viewBackground"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/viewBackground"
         app:layout_constraintTop_toTopOf="@+id/viewBackground" />
 
+    <View
+        android:id="@+id/viewBarB"
+        android:layout_width="1dp"
+        android:layout_height="61dp"
+        style="@style/viewStyle2"
+        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
+        app:layout_constraintEnd_toStartOf="@+id/textTotal"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/viewBackground"
+        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
+
     <TextView
         android:id="@+id/textCreator"
+        style="@style/textViewStyle2"
         android:layout_width="90dp"
         android:layout_height="30dp"
+        android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:ellipsize="end"
-        android:background="@drawable/bg_surround_gray"
-        app:layout_constraintEnd_toStartOf="@+id/textTotal"
-        app:layout_constraintTop_toTopOf="@+id/textTotal" />
+        app:layout_constraintEnd_toStartOf="@+id/viewBarB"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/viewBackground"
+        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
+
+    <View
+        android:id="@+id/viewBarC"
+        style="@style/viewStyle2"
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/textCreator"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/viewBackground"
+        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
 
     <TextView
         android:id="@+id/textDate"
+        style="@style/textViewStyle2"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:gravity="center"
-        android:background="@drawable/bg_surround_gray"
-        app:layout_constraintEnd_toStartOf="@+id/textCreator"
-        app:layout_constraintStart_toEndOf="@+id/textData"
-        app:layout_constraintTop_toTopOf="@+id/textData" />
+        app:layout_constraintEnd_toStartOf="@+id/viewBarC"
+        app:layout_constraintStart_toEndOf="@+id/viewBarA"
+        app:layout_constraintTop_toTopOf="@+id/viewBackground" />
+
+    <View
+        android:id="@+id/viewBarD"
+        style="@style/viewStyle2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toStartOf="@+id/viewBarB"
+        app:layout_constraintStart_toEndOf="@+id/viewBarA"
+        app:layout_constraintTop_toBottomOf="@+id/textCreator" />
 
     <TextView
         android:id="@+id/textInfo"
+        style="@style/textViewStyle2"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:maxLines="1"
         android:ellipsize="end"
         android:gravity="center_vertical"
+        android:maxLines="1"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:background="@drawable/bg_surround_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
-        app:layout_constraintEnd_toStartOf="@+id/textTotal"
-        app:layout_constraintStart_toEndOf="@+id/textData"
-        app:layout_constraintTop_toBottomOf="@+id/textDate"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/viewBarB"
+        app:layout_constraintStart_toEndOf="@+id/viewBarA"
+        app:layout_constraintTop_toBottomOf="@+id/viewBarD" />
 
     <View
         android:id="@+id/viewBackground"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="61dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"

@@ -1,5 +1,7 @@
 package mysoftstudio.cashandtime.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,11 +15,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import mysoftstudio.cashandtime.R
 import mysoftstudio.cashandtime.adapter.WalletAdapter
-import mysoftstudio.cashandtime.databinding.DialogAddCashBinding
-import mysoftstudio.cashandtime.databinding.DialogAddChildBinding
-import mysoftstudio.cashandtime.databinding.DialogAddTimeBinding
-import mysoftstudio.cashandtime.databinding.FragmentCreatorMainVBinding
+import mysoftstudio.cashandtime.databinding.*
 import mysoftstudio.cashandtime.presenter.CreatorMainP
+import mysoftstudio.cashandtime.tool.Preferences
 import mysoftstudio.cashandtime.view.vi.CreatorMainVI
 
 /**
@@ -29,6 +29,7 @@ class CreatorMainV : Fragment(), CreatorMainVI {
     private val binding get() = _binding!!
     private val p by lazy { CreatorMainP(this) }
     private lateinit var walletAdapter: WalletAdapter
+    private var check by Preferences("isChecked", false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +61,7 @@ class CreatorMainV : Fragment(), CreatorMainVI {
             .show()
     }
 
+    //進入管理這頁面，如果並沒有連結任何錢包的時候會跳出此訊息
     override fun showAddMessage() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setMessage(R.string.creator_msg_no_wallet)
@@ -154,6 +156,21 @@ class CreatorMainV : Fragment(), CreatorMainVI {
             .show()
     }
 
+    override fun showAbout() {
+        val view = DialogAboutBinding.inflate(LayoutInflater.from(requireContext()))
+        val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
+        val project = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://github.com/sakakami/CashAndTime") }
+        val rate = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://play.google.com/store/apps/details?id=mysoftstudio.cashandtime") }
+        view.txtResultVersion.text = version
+        view.txtResultProject.setOnClickListener { startActivity(project) }
+        view.txtResultRate.setOnClickListener { startActivity(rate) }
+        AlertDialog.Builder(requireContext())
+            .setView(view.root)
+            .setPositiveButton(R.string.global_ok) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
     private fun init() {
         binding.imageMember.setOnClickListener { p.getMemberInfo() }
         binding.textAddWallet.setOnClickListener { showAddChild() }
@@ -167,6 +184,12 @@ class CreatorMainV : Fragment(), CreatorMainVI {
         }
         binding.recyclerWallet.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerWallet.adapter = walletAdapter
+        //初始化menu
+        binding.toolbar.inflateMenu(R.menu.menu)
+        binding.toolbar.menu.findItem(R.id.menu_item_night).isChecked = check
+        binding.toolbar.setOnMenuItemClickListener { p.handleMenuClick(it) }
+
+        p.initDayNightMode()
         p.getData()
     }
 

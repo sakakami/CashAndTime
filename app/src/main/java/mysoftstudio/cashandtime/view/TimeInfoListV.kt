@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import mysoftstudio.cashandtime.R
 import mysoftstudio.cashandtime.adapter.DataListAdapter
@@ -38,6 +39,23 @@ class TimeInfoListV : Fragment(), TimeInfoListVI {
     }
 
     override fun refreshAdapter(size: Int) { adapter.refresh(size) }
+
+    override fun showMsg(msg: String) {
+        AlertDialog.Builder(requireContext())
+            .setMessage(msg)
+            .setPositiveButton(R.string.global_ok) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
+    override fun delConfirm() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(R.string.msg_del_confirm)
+            .setPositiveButton(R.string.global_ok) { _, _ -> p.handleDelData() }
+            .setNegativeButton(R.string.dialog_cancel) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
 
     private fun init() {
         adapter = DataListAdapter { holder, i -> p.handleHolder(holder, i) }

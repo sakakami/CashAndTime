@@ -3,6 +3,8 @@ package mysoftstudio.cashandtime.presenter
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.collection.ArrayMap
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
@@ -36,6 +38,7 @@ class CreatorMainP(private val vi: CreatorMainVI) : CreatorMainPI {
     private var mChildG by Preferences("childG", "")
     private var mCashList = ArrayList<Cash2G>()
     private var mTimeList = ArrayList<Time2G>()
+    private var check by Preferences("isChecked", false)
 
     fun getData() {
         if (mChildA.isNotEmpty()) {
@@ -84,6 +87,10 @@ class CreatorMainP(private val vi: CreatorMainVI) : CreatorMainPI {
             m.getData(map)
             //m.getUserDataWithHttp(map)
         } else vi.showAddMessage()
+    }
+
+    fun initDayNightMode() {
+        AppCompatDelegate.setDefaultNightMode(if (check) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     fun handleWalletHolder(holder: HolderWalletBinding, position: Int) {
@@ -199,6 +206,20 @@ class CreatorMainP(private val vi: CreatorMainVI) : CreatorMainPI {
         vi.showMessage(info)
     }
 
+    fun handleMenuClick(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.menu_item_night -> {
+                switchDayNightMode()
+                true
+            }
+            R.id.menu_item_about -> {
+                vi.showAbout()
+                true
+            }
+            else -> false
+        }
+    }
+
     override fun handleResultData(cash: CashG, time: TimeG) {
         mCashList = cash.data
         mTimeList = time.data
@@ -251,5 +272,15 @@ class CreatorMainP(private val vi: CreatorMainVI) : CreatorMainPI {
         map["userId"] = mUserId
         map["check"] = MyApplication.instance.handleShaEncode("userId=$mUserId${MyApplication.checkKey}")
         m.getUserData(map)
+    }
+
+    private fun switchDayNightMode() {
+        if (check) {
+            check = false
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            check = true
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
     }
 }

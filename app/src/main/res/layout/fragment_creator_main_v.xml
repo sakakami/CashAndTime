@@ -7,6 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".view.CreatorMainV">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/textViewStyle"
+            android:text="@string/app_name"
+            android:layout_gravity="center"
+            android:textSize="32sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <View
         android:id="@+id/viewA"
         android:layout_width="0dp"
@@ -15,7 +34,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_surround"
+        style="@style/viewStyle"
         app:layout_constraintBottom_toTopOf="@+id/textAddWallet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,28 +51,27 @@
 
     <TextView
         android:id="@+id/textWallet"
+        style="@style/textViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
         android:gravity="center"
-        android:textSize="20sp"
         android:text="@string/creator_wallet_title"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/textAddWallet"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/bg_surround_btn"
         android:gravity="center"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:text="@string/creator_wallet_add"
         android:textSize="20sp"
+        style="@style/textViewButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,12 +1,21 @@
 package mysoftstudio.cashandtime.presenter
 
+import androidx.collection.ArrayMap
+import com.google.gson.Gson
+import mysoftstudio.cashandtime.MyApplication
 import mysoftstudio.cashandtime.R
 import mysoftstudio.cashandtime.data.TimeData
+import mysoftstudio.cashandtime.data.UserIdData
 import mysoftstudio.cashandtime.databinding.HolderItemBinding
+import mysoftstudio.cashandtime.gson.DefaultG
+import mysoftstudio.cashandtime.gson.TimeG
+import mysoftstudio.cashandtime.model.TimeInfoListM
+import mysoftstudio.cashandtime.presenter.pi.TimeInfoListPI
 import mysoftstudio.cashandtime.view.vi.TimeInfoListVI
 
-class TimeInfoListP(private val vi: TimeInfoListVI) {
+class TimeInfoListP(private val vi: TimeInfoListVI) : TimeInfoListPI {
     private var timeList = ArrayList<TimeData>()
+    private val m by lazy { TimeInfoListM(this) }
 
     fun init(data: ArrayList<TimeData>) {
         timeList = data
@@ -54,5 +63,38 @@ class TimeInfoListP(private val vi: TimeInfoListVI) {
             val txtTime = "$txtHour:$txtMin"
             holder.textData.text = txtTime
         }
+
+        holder.viewBackground.setOnLongClickListener {
+            if (position == 0) vi.delConfirm()
+            true
+        }
+    }
+
+    fun handleDelData() {
+        val map = ArrayMap<String, String>()
+        map["timeId"] = timeList[0].timeId
+        map["check"] = MyApplication.instance.handleShaEncode("timeId=${timeList[0].timeId}${MyApplication.checkKey}")
+        m.sendDelTimeData(map)
+    }
+
+    override fun finishDelData(defaultG: DefaultG) {
+        if (defaultG.result == "1") {
+            val userIdList = ArrayList<UserIdData>()
+            val userIdData = UserIdData()
+            userIdData.userId = timeList[0].childId
+            userIdList.add(userIdData)
+            val gson = Gson().toJson(userIdList)
+            val check = MyApplication.instance.handleShaEncode("name=$gson${MyApplication.checkKey}")
+            val map = ArrayMap<String, String>()
+            map["name"] = gson
+            map["check"] = check
+            m.getTimeData(map)
+            vi.showMsg(MyApplication.instance.getString(R.string.msg_time_del_success))
+        } else vi.showMsg(MyApplication.instance.getString(R.string.msg_time_del_fail))
+    }
+
+    override fun handleTimeData(timeG: TimeG) {
+        timeList = timeG.data[0].timeData
+        vi.refreshAdapter(timeList.size)
     }
 }

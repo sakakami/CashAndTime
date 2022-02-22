@@ -1,6 +1,5 @@
 package mysoftstudio.cashandtime.presenter
 
-import android.util.Log
 import androidx.collection.ArrayMap
 import com.google.gson.Gson
 import mysoftstudio.cashandtime.MyApplication
@@ -14,7 +13,6 @@ import mysoftstudio.cashandtime.tool.Preferences
 import mysoftstudio.cashandtime.view.vi.HomeVI
 
 class HomeP(private val vi: HomeVI) : HomePI {
-    private val ERROR_MSG = "HomeP"
     private var userType by Preferences("userType", false)
     private var userId by Preferences("userId", "")
     private var userName by Preferences("userName", "")
@@ -27,6 +25,7 @@ class HomeP(private val vi: HomeVI) : HomePI {
     private var userChildG by Preferences("childG", "")
     private val m by lazy { HomeM(this) }
 
+    //傳送登入或者註冊資料
     fun handleSendData(isCreate: Boolean, name: String, isParent: Boolean) {
         if (name.isEmpty()) vi.showMessage("暱稱不可空白") else {
             val map = ArrayMap<String, String>()
@@ -51,8 +50,10 @@ class HomeP(private val vi: HomeVI) : HomePI {
         }
     }
 
+    //確認會員權限來分別前往不同的頁面
     fun checkData() { if (userId.isNotEmpty()) { if (userType) vi.toCreatorPage() else vi.toChildPage() } }
 
+    //解析從伺服器回傳的會員註冊是否成功的資料
     override fun handleFinishCreate(createMemberG: CreateMemberG) {
         if (createMemberG.result == "1") {
             userId = createMemberG.data[0].userId
@@ -63,6 +64,7 @@ class HomeP(private val vi: HomeVI) : HomePI {
         } else vi.showMessage(MyApplication.instance.getString(R.string.home_create_fail))
     }
 
+    //解析從伺服器接收的會員資料
     override fun handleMemberData(memberG: MemberG) {
         if (memberG.data.isEmpty()) vi.showMessage(MyApplication.instance.getString(R.string.home_inherit_fail)) else {
             userId = memberG.data[0].userId

@@ -1,6 +1,7 @@
 package mysoftstudio.cashandtime.data
 
 class CashData {
+    var cashId = ""
     var cashDate = ""
     var childId = ""
     var childName = ""

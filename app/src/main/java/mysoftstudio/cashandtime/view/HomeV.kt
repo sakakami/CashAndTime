@@ -19,7 +19,6 @@ import mysoftstudio.cashandtime.view.vi.HomeVI
  * 創建帳號或者繼承帳號，再依據帳號的分類前往特定的頁面
  */
 class HomeV : Fragment(), HomeVI {
-    private val ERROR_MSG = "HomeV"
     private var _binding: FragmentHomeVBinding? = null
     private val binding get() = _binding!!
     private val p by lazy { HomeP(this) }
@@ -29,6 +28,7 @@ class HomeV : Fragment(), HomeVI {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //binding初始化
         _binding = FragmentHomeVBinding.inflate(inflater, container, false)
         init()
         return binding.root
@@ -36,6 +36,7 @@ class HomeV : Fragment(), HomeVI {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        //離開此fragment時須將binding參數設定成null
         _binding = null
     }
 
@@ -45,11 +46,10 @@ class HomeV : Fragment(), HomeVI {
 
     override fun cleanEditText() { binding.editType.setText("") }
 
-    override fun showMessage(string: String) {
-        Toast.makeText(requireContext(), string, Toast.LENGTH_SHORT).show()
-    }
+    override fun showMessage(string: String) { Toast.makeText(requireContext(), string, Toast.LENGTH_SHORT).show() }
 
     private fun init() {
+        //確認是否為第一次啟動App，如果為第一次啟動則進入會員登入或者會員註冊的介面，若不是第一次進入則直接離開本頁面。
         if (isFirst) {
             var isCreate = true
             var name = ""

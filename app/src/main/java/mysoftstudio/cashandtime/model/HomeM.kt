@@ -13,12 +13,15 @@ import java.net.URL
 import java.net.URLEncoder
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * 使用coroutine來進行異步處理
+ */
+
 class HomeM(private val pi: HomePI) : CoroutineScope {
     private val ERROR_MSG = "HomeM"
-    private val job by lazy { Job() }
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable -> Log.e(ERROR_MSG, "error -> $throwable") }
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job + exceptionHandler
+        get() = Dispatchers.Main + Job() + exceptionHandler
 
     fun sendCreateData(map: ArrayMap<String, String>) {
         launch {
