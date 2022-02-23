@@ -1,5 +1,7 @@
 package mysoftstudio.cashandtime.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,10 +11,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import mysoftstudio.cashandtime.R
+import mysoftstudio.cashandtime.databinding.DialogAboutBinding
 import mysoftstudio.cashandtime.databinding.FragmentChildMainVBinding
 import mysoftstudio.cashandtime.gson.Cash2G
 import mysoftstudio.cashandtime.gson.Time2G
 import mysoftstudio.cashandtime.presenter.ChildMainP
+import mysoftstudio.cashandtime.tool.Preferences
 import mysoftstudio.cashandtime.view.vi.ChildMainVI
 
 /**
@@ -22,6 +26,7 @@ class ChildMainV : Fragment(), ChildMainVI {
     private var _binding: FragmentChildMainVBinding? = null
     private val binding get() = _binding!!
     private val p by lazy { ChildMainP(this) }
+    private var check by Preferences("isChecked", false)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +67,21 @@ class ChildMainV : Fragment(), ChildMainVI {
             .show()
     }
 
+    override fun showAbout() {
+        val view = DialogAboutBinding.inflate(LayoutInflater.from(requireContext()))
+        val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
+        val project = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://github.com/sakakami/CashAndTime") }
+        val rate = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://play.google.com/store/apps/details?id=mysoftstudio.cashandtime") }
+        view.txtResultVersion.text = version
+        view.txtResultProject.setOnClickListener { startActivity(project) }
+        view.txtResultRate.setOnClickListener { startActivity(rate) }
+        AlertDialog.Builder(requireContext())
+            .setView(view.root)
+            .setPositiveButton(R.string.global_ok) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
     private fun init() {
         Glide.with(requireContext())
             .asGif()
@@ -81,6 +101,11 @@ class ChildMainV : Fragment(), ChildMainVI {
         binding.textTime.setOnClickListener { p.handleClickTime() }
         binding.imageRefresh.setOnClickListener { p.getData() }
         binding.imageMember.setOnClickListener { p.getMemberInfo() }
+        //初始化menu
+        binding.toolbar.inflateMenu(R.menu.menu)
+        binding.toolbar.menu.findItem(R.id.menu_item_night).isChecked = check
+        binding.toolbar.setOnMenuItemClickListener { p.handleMenuClick(it) }
+
         p.getData()
     }
 }

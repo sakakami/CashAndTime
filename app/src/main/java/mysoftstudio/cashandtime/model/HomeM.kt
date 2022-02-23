@@ -5,12 +5,12 @@ import androidx.collection.ArrayMap
 import kotlinx.coroutines.*
 import mysoftstudio.cashandtime.presenter.pi.HomePI
 import mysoftstudio.cashandtime.tool.AppNetwork
-import java.io.BufferedReader
-import java.io.DataOutputStream
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URLEncoder
+//import java.io.BufferedReader
+//import java.io.DataOutputStream
+//import java.io.InputStreamReader
+//import java.net.HttpURLConnection
+//import java.net.URL
+//import java.net.URLEncoder
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -37,9 +37,9 @@ class HomeM(private val pi: HomePI) : CoroutineScope {
         }
     }
 
-    fun sendCreateDataHttp(map: ArrayMap<String, String>) {
+    /*fun sendCreateDataHttp(map: ArrayMap<String, String>) {
         //Log.e(ERROR_MSG, "map -> $map")
-        /*launch {
+        launch {
             val result = async(Dispatchers.IO) {
                 val url = URL("http://mysoftstudio.link/SaveMember.php")
                 val httpURLConnection = url.openConnection() as HttpURLConnection
@@ -58,6 +58,6 @@ class HomeM(private val pi: HomePI) : CoroutineScope {
                 BufferedReader(reader).readLine()
             }
             Log.e(ERROR_MSG, "result -> ${result.await()}")
-        }*/
-    }
+        }
+    }*/
 }

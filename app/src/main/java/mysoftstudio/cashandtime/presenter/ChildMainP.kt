@@ -1,8 +1,11 @@
 package mysoftstudio.cashandtime.presenter
 
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.collection.ArrayMap
 import com.google.gson.Gson
 import mysoftstudio.cashandtime.MyApplication
+import mysoftstudio.cashandtime.R
 import mysoftstudio.cashandtime.data.UserIdData
 import mysoftstudio.cashandtime.gson.Cash2G
 import mysoftstudio.cashandtime.gson.CashG
@@ -19,6 +22,7 @@ class ChildMainP(private val vi: ChildMainVI) : ChildMainPI {
     private var mTimeG = Time2G()
     private var mUserId by Preferences("userId", "")
     private var mUserName by Preferences("userName", "")
+    private var check by Preferences("isChecked", false)
 
     fun getData() {
         val userIdList = ArrayList<UserIdData>()
@@ -32,6 +36,10 @@ class ChildMainP(private val vi: ChildMainVI) : ChildMainPI {
         m.getData(map)
     }
 
+    fun initDayNightMode() {
+        AppCompatDelegate.setDefaultNightMode(if (check) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO)
+    }
+
     fun handleClickCash() { vi.toCashPage(mCashG) }
 
     fun handleClickTime() { vi.toTimePage(mTimeG) }
@@ -39,6 +47,20 @@ class ChildMainP(private val vi: ChildMainVI) : ChildMainPI {
     fun getMemberInfo() {
         val info = "暱稱：$mUserName\n會員編號：$mUserId\n會員編號建議截圖保存，會員編號是取回資料所需必須資料。"
         vi.showMessage(info)
+    }
+
+    fun handleMenuClick(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.menu_item_night -> {
+                switchDayNightMode()
+                true
+            }
+            R.id.menu_item_about -> {
+                vi.showAbout()
+                true
+            }
+            else -> false
+        }
     }
 
     override fun handleResultData(cashG: CashG, timeG: TimeG) {
@@ -63,5 +85,15 @@ class ChildMainP(private val vi: ChildMainVI) : ChildMainPI {
             "$hourToString:$finalToString"
         }
         vi.refreshData(showCash, showTime)
+    }
+
+    private fun switchDayNightMode() {
+        if (check) {
+            check = false
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        } else {
+            check = true
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
     }
 }

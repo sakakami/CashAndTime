@@ -8,4 +8,5 @@ interface ChildMainVI {
     fun toCashPage(cashG: Cash2G)
     fun toTimePage(timeG: Time2G)
     fun showMessage(msg: String)
+    fun showAbout()
 }

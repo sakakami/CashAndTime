@@ -11,11 +11,13 @@ import mysoftstudio.cashandtime.gson.DefaultG
 import mysoftstudio.cashandtime.gson.TimeG
 import mysoftstudio.cashandtime.model.TimeInfoListM
 import mysoftstudio.cashandtime.presenter.pi.TimeInfoListPI
+import mysoftstudio.cashandtime.tool.Preferences
 import mysoftstudio.cashandtime.view.vi.TimeInfoListVI
 
 class TimeInfoListP(private val vi: TimeInfoListVI) : TimeInfoListPI {
     private var timeList = ArrayList<TimeData>()
     private val m by lazy { TimeInfoListM(this) }
+    private var userType by Preferences("userType", false)
 
     fun init(data: ArrayList<TimeData>) {
         timeList = data
@@ -65,7 +67,7 @@ class TimeInfoListP(private val vi: TimeInfoListVI) : TimeInfoListPI {
         }
 
         holder.viewBackground.setOnLongClickListener {
-            if (position == 0) vi.delConfirm()
+            if (position == 0 && userType) vi.delConfirm()
             true
         }
     }

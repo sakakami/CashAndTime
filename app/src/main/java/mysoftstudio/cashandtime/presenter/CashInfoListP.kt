@@ -1,6 +1,5 @@
 package mysoftstudio.cashandtime.presenter
 
-import android.util.Log
 import androidx.collection.ArrayMap
 import com.google.gson.Gson
 import mysoftstudio.cashandtime.MyApplication
@@ -12,11 +11,13 @@ import mysoftstudio.cashandtime.gson.CashG
 import mysoftstudio.cashandtime.gson.DefaultG
 import mysoftstudio.cashandtime.model.CashInfoListM
 import mysoftstudio.cashandtime.presenter.pi.CashInfoListPI
+import mysoftstudio.cashandtime.tool.Preferences
 import mysoftstudio.cashandtime.view.vi.CashInfoListVI
 
 class CashInfoListP(private val vi: CashInfoListVI) : CashInfoListPI {
     private var cashList = ArrayList<CashData>()
     private val m by lazy { CashInfoListM(this) }
+    private var userType by Preferences("userType", false)
 
     fun init(data: ArrayList<CashData>) {
         cashList = data
@@ -38,7 +39,7 @@ class CashInfoListP(private val vi: CashInfoListVI) : CashInfoListPI {
             holder.textData.text = cashIn.toString()
         }
         holder.viewBackground.setOnLongClickListener {
-            if (position == 0) vi.delConfirm()
+            if (position == 0 && userType) vi.delConfirm()
             true
         }
     }

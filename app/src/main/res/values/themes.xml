@@ -29,7 +29,7 @@
         <item name="android:background">@drawable/bg_surround_btn</item>
     </style>
     <style name="textViewStyle2">
-        <item name="telltales_tailColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
     </style>
     <style name="viewStyle2">
         <item name="android:background">@color/black</item>

@@ -1,7 +1,6 @@
 package mysoftstudio.cashandtime.tool
 
 import android.util.Log
-import androidx.annotation.Keep
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,7 +17,7 @@ object AppNetwork {
     }
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https:///")
+            .baseUrl("http:///")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

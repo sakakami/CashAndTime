@@ -5,11 +5,11 @@ import androidx.collection.ArrayMap
 import kotlinx.coroutines.*
 import mysoftstudio.cashandtime.presenter.pi.CreatorMainPI
 import mysoftstudio.cashandtime.tool.AppNetwork
-import java.io.BufferedReader
-import java.io.ByteArrayOutputStream
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
+//import java.io.BufferedReader
+//import java.io.ByteArrayOutputStream
+//import java.io.InputStreamReader
+//import java.net.HttpURLConnection
+//import java.net.URL
 import kotlin.coroutines.CoroutineContext
 
 class CreatorMainM(private val pi: CreatorMainPI) : CoroutineScope {
@@ -55,7 +55,7 @@ class CreatorMainM(private val pi: CreatorMainPI) : CoroutineScope {
         }
     }
 
-    fun getUserDataWithHttp(map: ArrayMap<String, String>) {
+    /*fun getUserDataWithHttp(map: ArrayMap<String, String>) {
         launch {
             val result = async(Dispatchers.IO) {
                 val param = "name=${map["name"]}&check=${map["check"]}"
@@ -71,5 +71,5 @@ class CreatorMainM(private val pi: CreatorMainPI) : CoroutineScope {
             }
             Log.e(ERROR_MSG, "data -> ${result.await()}")
         }
-    }
+    }*/
 }
