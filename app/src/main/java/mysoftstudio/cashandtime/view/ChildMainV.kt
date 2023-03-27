@@ -1,7 +1,10 @@
 package mysoftstudio.cashandtime.view
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +34,7 @@ class ChildMainV : Fragment(), ChildMainVI {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentChildMainVBinding.inflate(inflater, container, false)
         init()
         return binding.root
@@ -49,13 +52,13 @@ class ChildMainV : Fragment(), ChildMainVI {
 
     override fun toCashPage(cashG: Cash2G) {
         val bundle = Bundle()
-        bundle.putSerializable("cash", cashG.cashData)
+        bundle.putParcelableArrayList("cash", cashG.cashData)
         findNavController().navigate(R.id.action_childMainV_to_cashInfoListV, bundle)
     }
 
     override fun toTimePage(timeG: Time2G) {
         val bundle = Bundle()
-        bundle.putSerializable("time", timeG.timeData)
+        bundle.putParcelableArrayList("time", timeG.timeData)
         findNavController().navigate(R.id.action_childMainV_to_timeInfoListV, bundle)
     }
 
@@ -69,7 +72,7 @@ class ChildMainV : Fragment(), ChildMainVI {
 
     override fun showAbout() {
         val view = DialogAboutBinding.inflate(LayoutInflater.from(requireContext()))
-        val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
+        val version = getVersion().versionName
         val project = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://github.com/sakakami/CashAndTime") }
         val rate = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://play.google.com/store/apps/details?id=mysoftstudio.cashandtime") }
         view.txtResultVersion.text = version
@@ -107,5 +110,14 @@ class ChildMainV : Fragment(), ChildMainVI {
         binding.toolbar.setOnMenuItemClickListener { p.handleMenuClick(it) }
 
         p.getData()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getVersion(): PackageInfo {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, PackageManager.PackageInfoFlags.of(0))
+        } else {
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+        }
     }
 }

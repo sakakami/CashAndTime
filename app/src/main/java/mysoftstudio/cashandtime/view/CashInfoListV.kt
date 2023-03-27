@@ -1,6 +1,8 @@
 package mysoftstudio.cashandtime.view
 
+import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +29,7 @@ class CashInfoListV : Fragment(), CashInfoListVI {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCashInfoListVBinding.inflate(inflater, container, false)
         init()
         return binding.root
@@ -63,8 +65,13 @@ class CashInfoListV : Fragment(), CashInfoListVI {
         binding.recycler.adapter = adapter
         val bundle = arguments
         if (bundle != null) {
-            val list = bundle.getSerializable("cash") as ArrayList<CashData>
-            p.init(list)
+            val list = bundle.parcelableArrayList<CashData>("cash")
+            list?.let { p.init(it) }
         }
+    }
+
+    private inline fun <reified T : Parcelable> Bundle.parcelableArrayList(key: String): ArrayList<T>? = when {
+        Build.VERSION.SDK_INT >= 33 -> getParcelableArrayList(key, T::class.java)
+        else -> @Suppress ("DEPRECATION") getParcelableArrayList(key)
     }
 }

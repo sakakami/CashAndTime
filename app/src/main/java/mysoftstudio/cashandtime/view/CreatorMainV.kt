@@ -1,7 +1,10 @@
 package mysoftstudio.cashandtime.view
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -34,7 +37,7 @@ class CreatorMainV : Fragment(), CreatorMainVI {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCreatorMainVBinding.inflate(inflater, container, false)
         init()
         return binding.root
@@ -158,7 +161,7 @@ class CreatorMainV : Fragment(), CreatorMainVI {
 
     override fun showAbout() {
         val view = DialogAboutBinding.inflate(LayoutInflater.from(requireContext()))
-        val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
+        val version = getVersion().versionName
         val project = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://github.com/sakakami/CashAndTime") }
         val rate = Intent(Intent.ACTION_VIEW).apply { data = Uri.parse("https://play.google.com/store/apps/details?id=mysoftstudio.cashandtime") }
         view.txtResultVersion.text = version
@@ -215,5 +218,14 @@ class CreatorMainV : Fragment(), CreatorMainVI {
             .setNegativeButton(R.string.dialog_cancel) { dialog, _ -> dialog.dismiss() }
             .create()
             .show()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getVersion(): PackageInfo {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, PackageManager.PackageInfoFlags.of(0))
+        } else {
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+        }
     }
 }

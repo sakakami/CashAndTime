@@ -126,13 +126,13 @@ class CreatorMainP(private val vi: CreatorMainVI) : CreatorMainPI {
 
     fun handleShowCash(position: Int) {
         val bundle = Bundle()
-        bundle.putSerializable("cash", mCashList[position].cashData)
+        bundle.putParcelableArrayList("cash", mCashList[position].cashData)
         vi.toShowCashPage(bundle)
     }
 
     fun handleShowTime(position: Int) {
         val bundle = Bundle()
-        bundle.putSerializable("time", mTimeList[position].timeData)
+        bundle.putParcelableArrayList("time", mTimeList[position].timeData)
         vi.toShowTimePage(bundle)
     }
 
