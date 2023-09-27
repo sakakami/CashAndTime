@@ -11,8 +11,8 @@ android {
         applicationId "mysoftstudio.cashandtime"
         minSdk 24
         targetSdk 33
-        versionCode 15
-        versionName "1.3.0"
+        versionCode 16
+        versionName "1.3.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,16 +25,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     //啟用view binding所需設定，使用後可以免除寫大量的find by view
     buildFeatures {
         viewBinding true
     }
+    namespace 'mysoftstudio.cashandtime'
 }
 
 dependencies {

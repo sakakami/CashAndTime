@@ -63,4 +63,6 @@
     <string name="menu_about_result_rate"><u>Rate my app</u></string>
     <string name="menu_about_title_project">專案頁面：</string>
     <string name="menu_about_result_project"><u>GitHub page</u></string>
+
+    <string name="error_photo">圖片載入錯誤</string>
 </resources>
